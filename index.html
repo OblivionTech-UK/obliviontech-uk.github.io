@@ -1,107 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Oblivion Phone</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oblivion Tech - Innovation Unleashed</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .fade-up {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
-        }
-        .fade-up.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
         body {
-            background-image: url('https://images.unsplash.com/photo-1600804340584-c7db2e501694?q=80&w=3285&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Replace with your image URL */
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: transparent;
+            color: #fff;
+            padding: 25px 0;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header h1 {
+            display: none;
+        }
+
+        .hero {
+            background-image: url('https://hgwconsult.com.au/wp-content/uploads/2023/10/Tech-Titans-How-Tech-Companies-Fuel-Global-Economic-Growth.jpg');
             background-size: cover;
             background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 250px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background-color: #222;
+            color: #eee;
+            text-align: center;
+            padding: 25px 0;
+            font-size: 0.9em;
+            position: relative;
+            bottom: 0;
+            width: 100%;
         }
     </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'inter': ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'oblivion': '#6b7280',
-                    },
-                },
-            },
-        }
-    </script>
 </head>
-<body class="bg-black text-white font-inter">
-    <main class="min-h-screen">
-        <header class="text-center py-20 px-6">
-            <h1 class="text-5xl font-bold mb-4 fade-up bg-gradient-to-r from-purple-400 to-pink-500 text-transparent bg-clip-text">
-                Oblivion Phone
-            </h1>
-            <p class="text-xl max-w-xl mx-auto mb-8 text-gray-300 fade-up">
-                A phone forged for the future. Ultra-fast, ultra-secure, and unapologetically powerful.
-            </p>
-            <a href="#" class="inline-block text-lg px-8 py-3 rounded-full bg-white text-black hover:bg-gray-300 transition-all duration-300 shadow-lg font-semibold">
-                Pre-Order Now
-            </a>
-        </header>
+<body>
+    <header>
+        <h1>Oblivion Tech</h1>
+    </header>
 
-        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8 max-w-7xl mx-auto">
-            <div class="bg-gray-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 fade-up">
-                <div class="mb-4 text-gray-400">
-                    <strong class="text-purple-300">📱 Design</strong>
-                </div>
-                <h2 class="text-2xl font-semibold text-white mb-2">Design</h2>
-                <p class="text-gray-300">Edge-to-edge glass, titanium frame, zero distractions.</p>
-            </div>
-            <div class="bg-gray-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 fade-up">
-                <div class="mb-4 text-gray-400">
-                    <strong class="text-blue-300">🧠 Performance</strong>
-                </div>
-                <h2 class="text-2xl font-semibold text-white mb-2">Performance</h2>
-                <p class="text-gray-300">Powered by the O-Engine, the fastest chip ever made.</p>
-            </div>
-            <div class="bg-gray-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 fade-up">
-                <div class="mb-4 text-gray-400">
-                    <strong class="text-green-300">🔋 Battery</strong>
-                </div>
-                <h2 class="text-2xl font-semibold text-white mb-2">Battery</h2>
-                <p class="text-gray-300">3-day battery life with rapid zero-to-full charge.</p>
-            </div>
-            <div class="bg-gray-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 fade-up">
-                <div class="mb-4 text-gray-400">
-                    <strong class="text-yellow-300">🛡️ Security</strong>
-                </div>
-                <h2 class="text-2xl font-semibold text-white mb-2">Security</h2>
-                <p class="text-gray-300">Military-grade encryption built in.</p>
-            </div>
-            <div class="bg-gray-900 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 fade-up">
-                <div class="mb-4 text-gray-400">
-                    <strong class="text-pink-300">✨ AI Features</strong>
-                </div>
-                <h2 class="text-2xl font-semibold text-white mb-2">AI Features</h2>
-                <p class="text-gray-300">Smart everything: camera, assistant, and beyond.</p>
-            </div>
-        </section>
-    </main>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Experience the Future of Technology</h1>
+            <p>Innovative phones and cutting-edge software designed to empower your life.</p>
+            <a href="phone.html" class="button">See what we're working on</a>
+        </div>
+    </section>
 
-    <script>
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
-            });
-        }, {
-            rootMargin: '0px 0px -50px 0px'
-        });
-
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-    </script>
 </body>
 </html>
