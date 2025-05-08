@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oblivion Phone - Product Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .slide-in {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease-out;
+        }
+        .slide-in.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .fade-in {
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+        .fade-in.show {
+            opacity: 1;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: #374151;
+            color: #f9fafb;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 90%;
+            width: 400px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #4b5563;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .close-button {
+            color: #cbd5e0;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-button:hover {
+            color: #f87171;
+        }
+
+        .modal-body {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .modal-footer {
+            text-align: right;
+        }
+
+        .ok-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .ok-button:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'oblivion': '#6b7280',
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-gray-900 text-white font-inter">
+    <div class="container mx-auto px-4 py-10">
+        <div class="flex flex-col lg:flex-row items-center gap-8 mb-12">
+            <section class="w-full lg:w-1/2">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                    <img src="https://www.wombatcricket.co.uk/cdn/shop/files/Pre-Order_Now_7a9830eb-d8a5-450f-97ca-185068dea530.png?v=1731155824" alt="Oblivion Phone" class="w-full h-auto object-cover fade-in">
+                </div>
+            </section>
+            <header class="w-full lg:w-1/2 text-center lg:text-left">
+                <h1 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 slide-in">
+                    Oblivion Phone
+                </h1>
+                <p class="text-xl text-gray-300 max-w-2xl lg:max-w-md fade-in">
+                    The ultimate developer phone. Engineered for performance, security, and limitless customization.
+                </p>
+                <p id="price" class="mt-4 text-2xl font-semibold text-green-400 fade-in">£719</p>
+                <div class="mt-8 flex justify-center lg:justify-start gap-4 flex-col lg:flex-row items-center">
+                    <a id="pre-order-button" href="#" class="text-lg px-8 py-3 rounded-full bg-white text-black hover:bg-gray-300 transition-all duration-300 shadow-lg font-semibold fade-in">
+                        Pre-Order Now
+                    </a>
+                    <a id="view-us-link" href="#" class="text-blue-400 hover:text-blue-300 transition-colors duration-200 text-sm">View as US Customer</a>
+                </div>
+            </header>
+        </div>
+
+        <section class="mb-12">
+            <h2 class="text-3xl font-semibold text-white mb-8 text-center slide-in">Features & Specifications</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 fade-in">
+                    <div class="mb-4 text-gray-400">
+                        <strong class="text-purple-300">⚙️ Dev-Focused Design</strong>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Design</h3>
+                    <p class="text-gray-300">
+                        Modular architecture with swappable components, a durable, repairable build, and IP68 rating.
+                    </p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 fade-in">
+                    <div class="mb-4 text-gray-400">
+                        <strong class="text-blue-300">🚀 Max Performance</strong>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Performance</h3>
+                    <p class="text-gray-300">
+                        Latest generation Snapdragon processor with advanced cooling, 16GB LPDDR5X RAM, and 512GB UFS 4.0 storage.
+                    </p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 fade-in">
+                    <div class="mb-4 text-gray-400">
+                        <strong class="text-green-300">🔋 Extended Battery</strong>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Battery</h3>
+                    <p class="text-gray-300">
+                        5000mAh battery with 65W fast charging and wireless charging support.
+                    </p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 fade-in">
+                    <div class="mb-4 text-gray-400">
+                        <strong class="text-yellow-300">🔒 Enhanced Security</strong>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Security</h3>
+                    <p class="text-gray-300">
+                        Hardware-level encryption, secure boot with verified boot, and a dedicated security chip.
+                    </p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 fade-in">
+                    <div class="mb-4 text-gray-400">
+                        <strong class="text-indigo-300">🛠️ Developer Tools</strong>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Developer Tools</h3>
+                    <p class="text-gray-300">
+                        Pre-loaded with Android SDK, compilers, debuggers, emulators, and root access.
+                    </p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 fade-in">
+                    <div class="mb-4 text-gray-400">
+                        <strong class="text-teal-300">📡 Connectivity</strong>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Connectivity</h3>
+                    <p class="text-gray-300">
+                        5G Sub6 + mmWave, Wi-Fi 7, Bluetooth 5.4, NFC, and USB-C 4.0.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Pre-Order</h2>
+                <span class="close-button">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>We are not taking pre-orders at this time.  Please check back later.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="ok-button" class="ok-button">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            rootMargin: '0px 0px -100px 0px'
+        });
+
+        document.querySelectorAll('.slide-in, .fade-in').forEach(el => observer.observe(el));
+
+        const viewUsLink = document.getElementById('view-us-link');
+        const priceDisplay = document.getElementById('price');
+        let isUSCustomer = false;
+
+        viewUsLink.addEventListener('click', (event) => {
+            event.preventDefault();
+            if (isUSCustomer) {
+                priceDisplay.textContent = '£719';
+                viewUsLink.textContent = 'View as US Customer';
+                isUSCustomer = false;
+            } else {
+                priceDisplay.textContent = '$899';
+                viewUsLink.textContent = 'View as UK Customer';
+                isUSCustomer = true;
+            }
+        });
+
+        // Get the modal
+        const modal = document.getElementById("order-modal");
+
+        // Get the button that opens the modal
+        const preOrderButton = document.getElementById("pre-order-button");
+
+        // Get the <span> element that closes the modal
+        const closeBtn = document.querySelector(".close-button");
+        const okBtn = document.getElementById("ok-button");
+
+        // When the user clicks the button, open the modal
+        preOrderButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            modal.style.display = "block";
+        });
+
+        // When the user clicks on <span> (x), close the modal
+        closeBtn.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        okBtn.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+
+    </script>
+</body>
+</html>
