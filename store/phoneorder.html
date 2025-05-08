@@ -44,7 +44,7 @@
             padding: 2rem;
             border-radius: 1rem;
             max-width: 90%;
-            width: 400px;
+            width: 800px;
             position: relative;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             animation: fadeIn 0.3s;
@@ -107,6 +107,93 @@
 
         .ok-button:hover {
             background-color: #45a049;
+        }
+
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .video-item {
+            flex: 1 1 300px;
+            background-color: #4b5563;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .video-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .video-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .video-preview {
+            width: 100%;
+            height: 180px;
+            background-color: #242424;
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            font-size: 2rem;
+            position: relative; /* Make sure the play icon is positioned relative to this */
+            overflow: hidden;
+        }
+
+        .video-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        .video-play-icon {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+            position: absolute; /* Position the icon absolutely within the preview */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        .video-play-icon:hover {
+            opacity: 1;
+        }
+
+        #video-player {
+            width: 100%;
+            max-height: 500px;
+            border-radius: 0.75rem;
+            margin-top: 1rem;
+            background-color: #000;
+        }
+        .video-page {
+            display: none;
+        }
+        .video-page.active {
+            display: block;
         }
 
     </style>
@@ -209,6 +296,12 @@
                 </div>
             </div>
         </section>
+
+        <section class="mb-12 text-center">
+            <button id="view-videos-button" class="text-lg px-8 py-3 rounded-full bg-white text-black hover:bg-gray-300 transition-all duration-300 shadow-lg font-semibold fade-in">
+                See Videos
+            </button>
+        </section>
     </div>
 
     <div id="order-modal" class="modal">
@@ -222,6 +315,38 @@
             </div>
             <div class="modal-footer">
                 <button id="ok-button" class="ok-button">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="video-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Video Library</h2>
+                <span class="close-button">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="video-container" id="video-list-page">
+                    <div class="video-item" data-video="start.mp4">
+                        <div class="video-preview video-item-clickable" >
+                            <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; color: white; font-size: 1.5rem; font-weight: bold;">
+                                Start
+                            </div>
+                        </div>
+                        <p class="text-center mt-2 text-gray-300">View the start up of the Oblivion phone</p>
+                    </div>
+                </div>
+                <div class="video-page" id="video-player-page">
+                    <video id="video-player" controls></video>
+                    <div class="text-right mt-4">
+                        <button id="back-to-list-button" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
+                            Back to List
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="close-video-button" class="ok-button">Close</button>
             </div>
         </div>
     </div>
@@ -258,18 +383,40 @@
 
         // Get the modal
         const modal = document.getElementById("order-modal");
+        const videoModal = document.getElementById("video-modal");
+
 
         // Get the button that opens the modal
         const preOrderButton = document.getElementById("pre-order-button");
+        const viewVideosButton = document.getElementById("view-videos-button");
+
 
         // Get the <span> element that closes the modal
         const closeBtn = document.querySelector(".close-button");
         const okBtn = document.getElementById("ok-button");
+        const closeVideoBtn = document.getElementById("close-video-button");
+        const backToListBtn = document.getElementById("back-to-list-button");
+
+
+        // Get the video player
+        const videoPlayer = document.getElementById("video-player");
+        const videoListPage = document.getElementById("video-list-page");
+        const videoPlayerPage = document.getElementById("video-player-page");
+        const videoPreviewElements = document.querySelectorAll('.video-preview');
+        const videoPlayIconElements = document.querySelectorAll('.video-play-icon');
+        const videoTitleElements = document.querySelectorAll('.video-title');
+        const videoItems = document.querySelectorAll('.video-item');
+
 
         // When the user clicks the button, open the modal
         preOrderButton.addEventListener("click", (event) => {
             event.preventDefault();
             modal.style.display = "block";
+        });
+
+        viewVideosButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            videoModal.style.display = "block";
         });
 
         // When the user clicks on <span> (x), close the modal
@@ -281,12 +428,75 @@
             modal.style.display = "none";
         });
 
+        closeVideoBtn.addEventListener("click", () => {
+            videoModal.style.display = "none";
+            videoPlayer.pause();
+            videoPlayer.src = '';
+            showVideoList();
+        });
+
         // When the user clicks anywhere outside of the modal, close it
         window.addEventListener("click", (event) => {
             if (event.target === modal) {
                 modal.style.display = "none";
             }
+            if (event.target === videoModal) {
+                videoModal.style.display = "none";
+                videoPlayer.pause();
+                videoPlayer.src = '';
+                showVideoList();
+            }
         });
+
+        // Handle video selection
+        videoItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const videoFile = item.getAttribute('data-video');
+                videoPlayer.src = `videos/${videoFile}`;
+            });
+        });
+
+        // Handle play button click
+        videoPreviewElements.forEach(videoPreview => {
+            videoPreview.addEventListener('click', () => {
+                const videoItem = videoPreview.closest('.video-item');
+                const videoFile = videoItem.getAttribute('data-video');
+                videoPlayer.src = `videos/${videoFile}`;
+
+                const videoPlayIcon = videoPreview.querySelector('.video-play-icon');
+                const videoTitle = videoItem.querySelector('.video-title');
+
+
+                videoPreview.style.display = 'none';
+                showVideoPlayer();
+            });
+        });
+
+
+
+        backToListBtn.addEventListener('click', () => {
+            showVideoList();
+            videoPlayer.pause();
+            videoPlayer.src = '';
+            showVideoList();
+        });
+
+        function showVideoList() {
+            videoListPage.classList.add('active');
+            videoPlayerPage.classList.remove('active');
+            videoPreviewElements.forEach(el => el.style.display = 'flex');
+            videoPlayIconElements.forEach(el => el.style.display = 'flex');
+            videoTitleElements.forEach(el => el.style.display = 'block');
+
+        }
+
+        function showVideoPlayer() {
+            videoListPage.classList.remove('active');
+            videoPlayerPage.classList.add('active');
+            videoPreviewElements.forEach(el => el.style.display = 'none');
+            videoPlayIconElements.forEach(el => el.style.display = 'none');
+            videoTitleElements.forEach(el => el.style.display = 'none');
+        }
 
     </script>
 </body>
